@@ -1,14 +1,14 @@
-// TODO 50 and 100 and 2 and 1 should be in some constants folder
+import { lowerBound, normalPointsExtra, specialPointsExtra, upperBound } from "../constants";
 
 export const getPointsFromBill = (bill) => {
 
-    if (bill < 50) return 0;
+    if (bill < lowerBound) return 0;
 
     let points = 0;
 
-    if (bill >= 100) points += 50; //TODO: simplify?
+    if (bill >= upperBound) points += (lowerBound * normalPointsExtra);
 
-    else return bill - 50;
+    else return bill - lowerBound;
 
-    return points + ((bill - 100) * 2);
+    return points + ((bill - upperBound) * specialPointsExtra);
 }

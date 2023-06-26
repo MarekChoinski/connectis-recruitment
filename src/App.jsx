@@ -1,4 +1,4 @@
-import "./App.css";
+import styles from "./main.module.scss";
 import { DataTable } from "./components/DataTable/DataTable";
 import { ErrorIndicatior } from "./components/ErrorIndicatior/ErrorIndicatior";
 import { LoadingSpinner } from "./components/LoadingSpinner/LoadingSpinner";
@@ -14,11 +14,17 @@ const App = () => {
   } = useFetchTransactions();
 
   return (
-    <div className="App">
-      <button onClick={() => fetchData(false)}>Fetch data</button>
-      <button onClick={() => fetchData(true)}>Fetch data (with error)</button>
+    <div className={styles.main}>
+      <div className={styles.buttonRow}>
+        <button className={styles.button} onClick={() => fetchData(false)}>
+          Fetch data
+        </button>
+        <button className={styles.button} onClick={() => fetchData(true)}>
+          Fetch data (with error)
+        </button>
+      </div>
       {loading && <LoadingSpinner />}
-      {dataError?.length ? <ErrorIndicatior x={dataError} /> : null}
+      {dataError?.length ? <ErrorIndicatior message={dataError} /> : null}
       {users?.length && transactions?.length ? (
         <DataTable users={users} transactions={transactions} />
       ) : null}

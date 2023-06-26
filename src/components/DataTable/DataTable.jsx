@@ -14,24 +14,26 @@ export const DataTable = ({ users, transactions }) => {
   );
 
   return (
-    <table>
+    <table className={styles.table}>
       <thead>
         <tr>
           <th>User id</th>
           {innerKeys
             .filter((month) => month !== totalMonths)
             .map((month) => (
-              <th>{monthNames[month]}</th>
+              <th key={`thead_${month}`}>{monthNames[month]}</th>
             ))}
           <th>Total</th>
         </tr>
       </thead>
       <tbody>
         {users.map((user) => (
-          <tr>
+          <tr key={`tr_${user.key}`}>
             <td>{user.key}</td>
             {innerKeys.map((month) => (
-              <td>{splittedByMonths[user.key][month]}</td>
+              <td key={`tr_${user.key}${month}`}>
+                {splittedByMonths[user.key][month]}
+              </td>
             ))}
           </tr>
         ))}
