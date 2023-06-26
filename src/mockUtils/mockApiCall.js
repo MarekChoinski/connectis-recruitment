@@ -1,9 +1,7 @@
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-export const mockApiCall = async (func, delay = 2000) => {
-    const result = func();
+export const mockApiCall = async (result, delay = 2000) => {
+    await sleep(delay);
 
-    await sleep(delay)
-
-    return Promise.resolve(result);
+    return result;
 }
