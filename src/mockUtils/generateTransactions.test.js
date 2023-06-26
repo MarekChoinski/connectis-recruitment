@@ -1,5 +1,4 @@
 import { generateTransactions } from "./generateTransactions";
-import { generateUsers } from "./generateUsers";
 
 describe("generateUsers", () => {
     beforeEach(() => {
@@ -23,7 +22,8 @@ describe("generateUsers", () => {
         const someTransaction =
         {
             userId: "user_0",
-            bill: 201
+            bill: 201,
+            date: new Date("2023-06-30T22:00:00.000Z")
         }
 
         expect(generateTransactions(users)).toContainEqual(someTransaction);
