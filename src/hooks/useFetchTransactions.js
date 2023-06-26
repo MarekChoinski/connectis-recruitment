@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { mockApiCall } from '../mockUtils/mockApiCall';
 import { generateUsers } from '../mockUtils/generateUsers';
 import { generateTransactions } from '../mockUtils/generateTransactions';
+import { amountGeneratedUsers, timeoutGeneratedUsers, timeoutGeneratedTransactions } from '../constants';
 
 export const useFetchTransactions = () => {
 
@@ -27,15 +28,14 @@ export const useFetchTransactions = () => {
             return;
         }
 
-        const users = await mockApiCall(generateUsers(10), 700);
+        const users = await mockApiCall(generateUsers(amountGeneratedUsers), timeoutGeneratedUsers);
 
         if (!users?.length) {
-            console.log("xx");
             generateError("Error while fetching users");
             return;
         }
 
-        const transactions = await mockApiCall(generateTransactions(users), 1100);
+        const transactions = await mockApiCall(generateTransactions(users), timeoutGeneratedTransactions);
 
         if (!transactions?.length) {
             generateError("Error while fetching transactions");

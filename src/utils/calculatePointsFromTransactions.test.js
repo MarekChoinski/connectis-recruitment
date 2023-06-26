@@ -1,17 +1,11 @@
-import { calculatePoints } from "./calculatePoints";
+import { calculatePointsFromTransactions } from "./calculatePointsFromTransactions";
 
-describe("calculatePoints", () => {
+describe("calculatePointsFromTransactions", () => {
     test("is defined", () => {
-        expect(calculatePoints).toBeDefined();
+        expect(calculatePointsFromTransactions).toBeDefined();
     });
 
     test("calculates", () => {
-
-        const users = [{
-            key: "user_0",
-            points: 0
-        }];
-
         const transactions = [
             { userId: 'user_0', bill: 195, date: new Date("2023-04-01T22:22:31.052Z") },
             { userId: 'user_0', bill: 42, date: new Date("2023-06-16T16:47:05.542Z") },
@@ -35,8 +29,6 @@ describe("calculatePoints", () => {
             { userId: 'user_0', bill: 156, date: new Date("2023-04-03T04:14:28.590Z") }
         ]
 
-        const expected = "x"
-
-        expect(calculatePoints(users, transactions)).toStrictEqual(expected);
+        expect(calculatePointsFromTransactions(transactions)).toStrictEqual(1619);
     });
 });
